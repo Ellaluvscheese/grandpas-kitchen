@@ -19,3 +19,18 @@
     <img src="#" alt="Pinterest Logo">
 </div>
 </footer>
+
+<style>
+    footer {
+        background-color: #F6E6D6;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+    h3, h2{
+        /* font-size: 30px; */
+        color: #283D64;
+        padding-left: 10px;
+    }
+    
+</style>
