@@ -12,6 +12,14 @@ async function convertToJson(res) {
 export const getRecipes = async () => {
   const response = await fetch(`${baseURL}recipes/`);
   const data = await convertToJson(response);
-  console.log(data);
+  console.log("get recipes function log: " + data);
+  return data;
+}
+
+// function to get a list of recipes with a specific category
+export const getRecipesByCategory = async (category) => {
+  const response = await fetch(`${baseURL}recipes/`);
+  const data = await convertToJson(response);
+  console.log("data & category: ", data , category);
   return data;
 }

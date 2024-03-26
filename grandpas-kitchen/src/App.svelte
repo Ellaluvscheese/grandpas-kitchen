@@ -4,15 +4,25 @@
   import Home from './js/components/Home.svelte';
   import Profile from './js/components/Profile.svelte';
   import Recipes from './js/components/Recipes.svelte';
+  import Search from './js/components/Search.svelte';
   import { route } from './js/stores.js';
-  import { getParam } from './js/utils.js';
+  import { onMount } from 'svelte';
 
-  let params = '';
-  window.addEventListener('popstate', event => {
-    $route = window.location.hash;
-    // $route = $route.split('?')[0];
-    console.log(window.location)
-  })
+  let urlParams = {};
+
+  function handleRoute() {
+    const [hash, params] = window.location.hash.split('?');
+    if (params) urlParams = new URLSearchParams("?" + params);
+    console.log(window.location);
+    // if (!$isAuthenticated && hash == '#profile') {
+    //   login();
+    // } else {
+      $route = hash;
+    // }
+  }
+
+  window.addEventListener('popstate', handleRoute);
+
 </script>
 
 <MainHeader />
@@ -21,8 +31,10 @@
   {#if $route == '#profile'}
     <Profile/>
     {:else if $route == '#recipe_details'}
-    <Recipes/>
-    {:else}
+    <Recipes params={urlParams}/>
+    {:else if $route == '#search'}
+    <Search/>
+    {:else if $route == '#home'}
     <Home/>
   {/if}
   

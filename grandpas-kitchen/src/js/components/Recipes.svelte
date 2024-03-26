@@ -1,8 +1,8 @@
 <script>
-    import { getParam } from "../utils.js";
 
-    const recipeId = getParam('recipe')
-    console.log(recipeId)
+    export let params = {};
+
+    const recipeId = params.get('id');
 
 </script>
 

@@ -4,6 +4,7 @@
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#profile">Profile</a></li>
+            <li><a href="#search">Search Page</a></li>
         </ul>
         <button>Create</button>
     </div>
