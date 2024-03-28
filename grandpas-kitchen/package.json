@@ -12,5 +12,9 @@
     "@sveltejs/vite-plugin-svelte": "^3.0.2",
     "svelte": "^4.2.10",
     "vite": "^5.1.0"
-  }
+  },
+  "description": "This template should help get you started developing with Svelte in Vite.",
+  "main": "svelte.config.js",
+  "author": "",
+  "license": "ISC"
 }
