@@ -4,6 +4,7 @@
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#profile">Profile</a></li>
+            <li><a href="#search">Search Page</a></li>
         </ul>
         <div class="searchSVG">
             <svg version="1.1" id="Layer_3" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

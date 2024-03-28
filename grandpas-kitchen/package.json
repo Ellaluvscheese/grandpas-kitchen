@@ -16,5 +16,8 @@
   "description": "This template should help get you started developing with Svelte in Vite.",
   "main": "svelte.config.js",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@auth0/auth0-spa-js": "^2.1.3"
+  }
 }
