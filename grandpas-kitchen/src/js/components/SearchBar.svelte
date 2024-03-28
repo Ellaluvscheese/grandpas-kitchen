@@ -1,12 +1,13 @@
 <script>
     import { getRecipesByCategory } from "../externalServices";
-    import { recipes } from "../stores.js";
-    let text = '';
+    import { recipes, category } from "../stores.js";
+    export let text = '';
 
     async function searched() {
         let hi = document.getElementById('hi');
-        hi.innerHTML = 'You searched for: ' + text;
-        $recipes = await getRecipesByCategory(text);
+        hi.innerHTML = 'Displaying results for: ' + text;
+        $recipes = await getRecipesByCategory($category, text);
+        console.log($recipes);
     }
 
 </script>
