@@ -1,4 +1,6 @@
 const baseURL = import.meta.env.VITE_SERVER_URL;
+import { auth0Client } from "./stores.js";
+import { get } from "svelte/store";
 
 
  let categoryRecipes = [];
@@ -55,3 +57,26 @@ export const getIngredientsById = async (id) => {
   let ingredient = data.name;
   return ingredient;
 }
+
+    //example of sending a request to the API using the token from Auth0
+    export async function privateRoute(url, method = "GET") {
+      const token = await get(auth0Client).getTokenSilently();
+      const options = {
+        method: method,
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      };
+      const res = await fetch(import.meta.env.VITE_API_SERVER_URL + url, options);
+      const data = await res.json();
+      console.log(data);
+      return data;
+    }
+  
+    //exmaple of making a request to a public API route.
+    export async function publicRoute(url) {
+      const res = await fetch(import.meta.env.VITE_API_SERVER_URL + url);
+      const data = await res.json();
+      console.log(data);
+      return data;
+    }

@@ -7,3 +7,11 @@ export const recipes = writable([]);
 export const category = writable('');
 
 export const categoryRecipes = writable([]);
+
+// add stores for tracking authentication
+export const isAuthenticated = writable(false);
+
+export const user = writable();
+export const popupOpen = writable(false);
+export const error = writable();
+export const auth0Client = writable(null);
