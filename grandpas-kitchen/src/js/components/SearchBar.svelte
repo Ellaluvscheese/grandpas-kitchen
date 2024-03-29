@@ -2,8 +2,14 @@
     import { getRecipesByCategory } from "../externalServices";
     import { recipes, category } from "../stores.js";
     export let text = '';
+    import { onMount } from 'svelte';
+
+    onMount(() => {
+        $recipes = [];
+    });
 
     async function searched() {
+        $recipes = [];
         let hi = document.getElementById('hi');
         hi.innerHTML = 'Displaying results for: ' + text;
         $recipes = await getRecipesByCategory($category, text);

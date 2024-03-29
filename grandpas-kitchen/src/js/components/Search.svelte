@@ -23,7 +23,6 @@
         });
         event.target.classList.add('selected');
         const filterType = event.target.dataset.filterType;
-        console.log('Filter: ' + filterType);
         switch (filterType) {
             case 'cat':
                 console.log('Category');
@@ -44,9 +43,9 @@
 
 <p>Search by: </p>
 <ul>
-    <li><button on:click={filterSearch} id="catButton" data-filterType="cat" class="filter-button selected">Category</button></li>
-    <li><button on:click={filterSearch} id="ingButton" data-filterType="ing" class="filter-button">Ingredients</button></li>
-    <li><button on:click={filterSearch} id="nameButton" data-filterType="name" class="filter-button">Recipe Name</button></li>
+    <li><button on:click={filterSearch} id="catButton" data-filter-type="cat" class="filter-button selected">Category</button></li>
+    <li><button on:click={filterSearch} id="ingButton" data-filter-type="ing" class="filter-button">Ingredients</button></li>
+    <li><button on:click={filterSearch} id="nameButton" data-filter-type="name" class="filter-button">Recipe Name</button></li>
 </ul>
 
 <SearchBar />
