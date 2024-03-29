@@ -51,15 +51,23 @@ export const getRecipesByCategory = async (category, text) => {
 }
 
 export const getIngredientsById = async (id) => {
-  const response = await fetch(`${baseURL}ingredients/${id}`);
-  const data = await convertToJson(response);
+  // const response = await fetch(`${baseURL}ingredients/${id}`);
+  // const data = await convertToJson(response);
+  const data = await publicRoute(`ingredients/${id}`);
   console.log("get ingredients by id function log: " + data);
   let ingredient = data.name;
   return ingredient;
 }
 
+// get user profile
+export const getUserProfile = async (user_id) => {
+  const response = await privateRoute("profile");
+  console.log("get user profile function log: " + response);
+  return response;
+}
+
     //example of sending a request to the API using the token from Auth0
-    export async function privateRoute(url, method = "GET") {
+    async function privateRoute(url, method = "GET") {
       const token = await get(auth0Client).getTokenSilently();
       const options = {
         method: method,
@@ -67,16 +75,16 @@ export const getIngredientsById = async (id) => {
           Authorization: `Bearer ${token}`
         }
       };
-      const res = await fetch(import.meta.env.VITE_API_SERVER_URL + url, options);
-      const data = await res.json();
+      const res = await fetch(baseURL + url, options);
+      const data = await convertToJson(res);
       console.log(data);
       return data;
     }
   
     //exmaple of making a request to a public API route.
-    export async function publicRoute(url) {
-      const res = await fetch(import.meta.env.VITE_API_SERVER_URL + url);
-      const data = await res.json();
+    async function publicRoute(url) {
+      const res = await fetch(baseURL + url);
+      const data = await convertToJson(res);
       console.log(data);
       return data;
     }
