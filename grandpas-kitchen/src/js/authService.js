@@ -26,7 +26,8 @@ add logout function
 export functions
  */
 import { createAuth0Client } from "@auth0/auth0-spa-js";
-import { popupOpen, isAuthenticated, user } from "./stores.js";
+import { popupOpen, isAuthenticated, user, auth0Client } from "./stores.js";
+import { get } from "svelte/store";
 function createClient() {
   const client = createAuth0Client({
     domain: import.meta.env.VITE_AUTH0_DOMAIN,
@@ -39,11 +40,12 @@ function createClient() {
   return client;
 }
 
-async function loginWithPopup(client, options) {
+// why does this need two parameters when i don't give it two in the app.svelte file? line 63
+export async function loginWithPopup(options) {
   popupOpen.set(true);
   try {
-    await client.loginWithPopup(options);
-    user.set(await client.getUser());
+    await get(auth0Client).loginWithPopup(options);
+    user.set(await get(auth0Client).getUser());
     isAuthenticated.set(true);
   } catch (error) {
     console.log(error);
@@ -52,8 +54,8 @@ async function loginWithPopup(client, options) {
   }
 }
 
-function logout(client) {
-  return client.logout();
+function logout() {
+  return get(auth0Client).logout();
 }
 
 const auth = {
