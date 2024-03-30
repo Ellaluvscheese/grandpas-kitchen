@@ -56,7 +56,11 @@
       <Profile />
       <button on:click={logout}>Logout</button>
     {:else}
-      <button on:click={login}>Login</button>
+      <section>
+        <h1>Welcome to Grandpa's Kitchen</h1>
+        <button on:click={login}>Login</button>
+        <p>We noticed you are not signed in. Sign in or create an account to start adding recipes to your cook book!</p>
+      </section>
     {/if}
     {:else if $route == '#recipe_details'}
     <Recipes params={urlParams}/>
