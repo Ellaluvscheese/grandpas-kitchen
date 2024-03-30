@@ -2,16 +2,18 @@
     import { getRecipesByCategory } from "../externalServices";
     import { recipes, category } from "../stores.js";
     export let text = '';
-    import { onMount } from 'svelte';
+    // import { onMount } from 'svelte';
 
-    onMount(() => {
-        $recipes = [];
-    });
+    // onMount(() => {
+    //     $recipes = [];
+    // });
+    $recipes = [];
 
     async function searched() {
         $recipes = [];
+        console.log('recipes on click:  ' + $recipes);
         let hi = document.getElementById('hi');
-        hi.innerHTML = 'Displaying results for: ' + text;
+        hi.innerHTML = 'Displaying results for: "' + text.toLowerCase() + '"';
         $recipes = await getRecipesByCategory($category, text);
         console.log($recipes);
     }
