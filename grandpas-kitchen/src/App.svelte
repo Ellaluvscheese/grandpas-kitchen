@@ -1,4 +1,5 @@
 <script>
+  // code: EG
   import MainHeader from './js/components/MainHeader.svelte';
   import MainFooter from './js/components/MainFooter.svelte';
   import Home from './js/components/Home.svelte';
@@ -32,29 +33,6 @@
       $route = hash;
     // }
   }
-
-  //   //example of sending a request to the API using the token from Auth0
-  //   export async function privateRoute(url, method = "GET") {
-  //   const token = await $auth0Client.getTokenSilently();
-  //   const options = {
-  //     method: method,
-  //     headers: {
-  //       Authorization: `Bearer ${token}`
-  //     }
-  //   };
-  //   const res = await fetch(import.meta.env.VITE_API_SERVER_URL + url, options);
-  //   const data = await res.json();
-  //   console.log(data);
-  //   results = data;
-  // }
-
-  // //exmaple of making a request to a public API route.
-  // export async function publicRoute(url) {
-  //   const res = await fetch(import.meta.env.VITE_API_SERVER_URL + url);
-  //   const data = await res.json();
-  //   console.log(data);
-  //   results = data;
-  // }
 
     // create helper functions for login/logout
 

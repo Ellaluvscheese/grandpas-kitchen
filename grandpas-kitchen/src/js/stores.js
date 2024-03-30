@@ -1,3 +1,4 @@
+// Description: This file contains the stores that will be used to store the state of the application. (EG)
 import { writable } from "svelte/store";
 
 export const route = writable('');
