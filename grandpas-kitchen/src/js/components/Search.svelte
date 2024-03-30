@@ -1,4 +1,5 @@
 <script>
+    // Code: EG
     import { onMount } from "svelte";
     import { category, recipes } from "../stores.js";
     import SearchBar from "./SearchBar.svelte";

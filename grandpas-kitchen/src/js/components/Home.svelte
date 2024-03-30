@@ -1,4 +1,5 @@
 <script>
+    // Code: EG
     import { getRecipes } from "../externalServices.js";
     import RecipeSummary from "./RecipeSummary.svelte";
     import { recipes } from "../stores.js";
