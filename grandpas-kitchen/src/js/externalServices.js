@@ -3,8 +3,6 @@ import { auth0Client } from "./stores.js";
 import { get } from "svelte/store";
 
 
- let categoryRecipes = [];
-
 async function convertToJson(res) {
     const data = await res.json();
     if (res.ok) {
@@ -14,42 +12,51 @@ async function convertToJson(res) {
     }
   }
 
+// (EG)
 export const getRecipes = async () => {
   const response = await fetch(`${baseURL}recipes/`);
   const data = await convertToJson(response);
-  console.log("get recipes function log: " + data);
+  // console.log("get recipes function log: " + data);
   return data;
 }
 
 // function to get a list of recipes with a specific category
+// (EG)
 export const getRecipesByCategory = async (category, text) => {
-  const response = await fetch(`${baseURL}recipes/`);
-  const data = await convertToJson(response);
+  let categoryRecipes = [];
+  text = text.toLowerCase();
+  const data = await getRecipes();
   console.log("category: ", category);
   data.forEach(recipe => {
     if (category === 'cat'){
-      if (recipe.categories.includes(text)){
-        categoryRecipes.push(recipe);
-      }
-      else if (category === 'ing'){
-        recipe.ingredients.forEach(ingredient => {
-          let ingName = getIngredientsById(ingredient._id);
-          console.log("ingredient id: " + ingredient._id);
-          if (ingName === text){
-            categoryRecipes.push(recipe);
-          }
-        });
-      }
-      else if (category === 'name'){
-        if (recipe.name === text){
+      recipe.categories.forEach(cat => {
+        if (cat.toLowerCase() === text){
           categoryRecipes.push(recipe);
         }
+      });
+      // if (recipe.categories.includes(text)){
+      //   categoryRecipes.push(recipe);
+      // }
+    }
+    else if (category === 'ing'){
+      console.log('Testing the if.... it is ing')
+      recipe.ingredients.forEach(ingredient => {
+        console.log(text, ingredient.name);
+        if (ingredient.name.toLowerCase() === text){
+          categoryRecipes.push(recipe);
+        }
+      });
+    }
+    else if (category === 'name'){
+      if (recipe.name.toLowerCase() === text){
+        categoryRecipes.push(recipe);
       }
     }
-    });
+  });
   return categoryRecipes;
 }
 
+// (EG)
 export const getIngredientsById = async (id) => {
   // const response = await fetch(`${baseURL}ingredients/${id}`);
   // const data = await convertToJson(response);
@@ -59,6 +66,7 @@ export const getIngredientsById = async (id) => {
   return ingredient;
 }
 
+// (EG)
 // get user profile
 export const getUserProfile = async (user_id) => {
   const response = await privateRoute("profile");
