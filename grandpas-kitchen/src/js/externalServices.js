@@ -96,3 +96,10 @@ export const getUserProfile = async (user_id) => {
       console.log(data);
       return data;
     }
+
+    //get recipe by id funtion
+   export async function getRecipeById(id) {
+    const response = await fetch(`${baseURL}recipes/${id}`);
+    const data = await convertToJson(response);
+    return data;
+   }
