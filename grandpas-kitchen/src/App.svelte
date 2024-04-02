@@ -9,6 +9,7 @@
   import { route, isAuthenticated, user, auth0Client } from './js/stores.js';
   import { onMount } from 'svelte';
   import auth from "./js/authService.js";
+  import AddRecipe1 from './js/components/AddRecipe1.svelte';
   // import { get } from "svelte/store";
 
   let urlParams = {};
@@ -58,6 +59,8 @@
     {:else}
       <button on:click={login}>Login</button>
     {/if}
+    {:else if $route == '#add_recipe'}
+    <AddRecipe1/>
     {:else if $route == '#recipe_details'}
     <Recipes params={urlParams}/>
     {:else if $route == '#search'}
