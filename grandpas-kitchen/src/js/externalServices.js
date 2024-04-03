@@ -69,9 +69,27 @@ export const getIngredientsById = async (id) => {
 // (EG)
 // get user profile
 export const getUserProfile = async (user_id) => {
-  const response = await privateRoute("profile");
+  console.log('checking to see if this is real: ' + user_id)
+  const response = await privateRoute("users/" + user_id);
+  if (response.status === 'error'){
+    return null;
+  }
   console.log("get user profile function log: " + response);
   return response;
+}
+
+export const createUserProfile = async (userObj) => {
+  // call the api to post the new user and return the user_id
+  const response = await fetch(`${baseURL}users/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: userObj
+  });
+  const data = await convertToJson(response);
+  console.log("create user profile function log: " + data);
+  return data;
 }
 
     //example of sending a request to the API using the token from Auth0

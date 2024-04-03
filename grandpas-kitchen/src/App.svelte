@@ -9,9 +9,12 @@
   import { route, isAuthenticated, user, auth0Client } from './js/stores.js';
   import { onMount } from 'svelte';
   import auth from "./js/authService.js";
+  import { getUserProfile, createUserProfile } from './js/externalServices';
   // import { get } from "svelte/store";
 
   let urlParams = {};
+  
+  let profile;
 
   let results = {};
 
@@ -21,6 +24,36 @@
     // check to see if we are currently authenticated
     isAuthenticated.set(await $auth0Client.isAuthenticated());
     user.set(await $auth0Client.getUser());
+
+    if ($isAuthenticated){
+      console.log($user);
+      console.log('sub',$user.sub);
+      let userIdAuth = $user.sub.split("|")[1];
+      console.log('userIdAuth',userIdAuth);
+      //get the user
+      try{
+        console.log('profile',profile);
+      profile = await getUserProfile(userIdAuth);
+      console.log('profile',profile.json());
+      // if user not found, create user
+      // null or error, check later
+      if (profile.status == 'error' || profile == null){
+        let newUser = {
+          "userFirstName": $user.given_name,
+          "userLastName": "any",
+          "email": "any",
+          "Auth0Id": userIdAuth
+        }
+        // create the user
+        profile = await createUserProfile(newUser);
+        } else {
+          $user = profile._id;
+        }
+      
+      }catch(e){
+        console.log('yuh',e);
+      }
+    }
   });
 
   function handleRoute() {
