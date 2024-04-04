@@ -10,6 +10,7 @@
   import { onMount } from 'svelte';
   import auth from "./js/authService.js";
   import { getUserProfile, createUserProfile } from './js/externalServices';
+  import AddRecipe1 from './js/components/AddRecipe1.svelte';
   // import { get } from "svelte/store";
 
   let urlParams = {};
@@ -98,6 +99,8 @@
         <p>We noticed you are not signed in. Sign in or create an account to start adding recipes to your cook book!</p>
       </section>
     {/if}
+    {:else if $route == '#add_recipe'}
+    <AddRecipe1/>
     {:else if $route == '#recipe_details'}
     <Recipes params={urlParams}/>
     {:else if $route == '#search'}
