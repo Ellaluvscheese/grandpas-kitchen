@@ -117,6 +117,20 @@ export const createUserProfile = async (userObj) => {
     return data;
   }
   
+    //exmaple of making a request to a public API route.
+    async function publicRoute(url) {
+      const res = await fetch(baseURL + url);
+      const data = await convertToJson(res);
+      console.log(data);
+      return data;
+    }
+
+    //get recipe by id funtion
+   export async function getRecipeById(id) {
+    const response = await fetch(`${baseURL}recipes/${id}`);
+    const data = await convertToJson(response);
+    return data;
+   }
   //exmaple of making a request to a public API route.
   async function publicRoute(url) {
     const res = await fetch(baseURL + url);
