@@ -1,6 +1,25 @@
 html {
   margin: 0;
 }
+body{
+  margin: 0px;
+}
+#app div{
+  text-align: center;
+
+}
+#app div section{
+  margin: 50px 0px;
+}
+
+footer{
+  text-align: center;
+  padding: 20px;
+}
+
+.socialMedia{
+ padding: 0px 20%;
+}
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
