@@ -1,5 +1,5 @@
 <script>
-    import { getRecipesByCategory } from "../externalServices";
+    import { getRecipesByCategory } from "../externalServices.js";
     import { recipes, category } from "../stores.js";
     export let text = '';
     // import { onMount } from 'svelte';

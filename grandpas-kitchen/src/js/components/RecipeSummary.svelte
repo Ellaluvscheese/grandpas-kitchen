@@ -1,7 +1,17 @@
 <script>
     // Code: EG
+    import { onMount } from "svelte";
+    import { user } from "../stores.js";
     import LikeButton from "./LikeButton.svelte";
     export let recipe = {};
+
+    onMount( async () => {
+        if ($user.saved.includes(recipe)) {
+            let button = document.getElementById(`liked-button-${recipe._id}`);
+            button.classList.add('liked');
+            button.style.color = 'red';
+        }
+    })
 </script>
 
 <section>
