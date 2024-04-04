@@ -29,28 +29,48 @@ body {
   max-width: 450px;
   border-radius: 20px;
   -webkit-filter: blur(2px); /* Safari 6.0 - 9.0 */
-  filter: blur(2px) grayscale(50%);
+  filter: blur(2px);
   /* filter: grayscale(70%); */
+  /* padding-right: 30px; */
 }
+
+.recipeOfWeekHome {
+  grid-column: 3/4;
+  margin-right: 40px;
+}
+
 .weekTitle {
   position: absolute;
-  top: 40%;
-  right: 20%;
-  color: red;
+  top: 9%;
+  right: 13%;
+  color: white;
+  font-weight: bold;
+  font-family: 'Caveat', cursive;
   z-index: 1;
+  /* background-color: #283D64; */
+  /* opacity: .5; */
+  padding: 30px;
 }
 
 .image-summary-size {
-  max-width: 300px;
+  max-width: 330px;
   object-fit: cover;
   border-radius: 20px;
 }
 
 /* div that has the recipes and recipe of the week in it */
 .recipes {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-betweens;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-between;
+  padding: 30px;
+}
+.basic-recipes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+section.s-KbQL7_e1UIr4 {
+  padding: 20px;
 }
 
 /* recipe name */
@@ -69,10 +89,6 @@ body {
 p.s-KbQL7_e1UIr4 {
   margin: 0;
 }
-
-/* .image-summary-size.s-KbQL7_e1UIr4 {
-  max-width: 230px;
-} */
 
 [id*='liked-button'] {
   background-color: rgb(189, 0, 0);
