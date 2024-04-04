@@ -8,7 +8,7 @@
 </script>
 
 <footer>
-<img src="#" alt="logoImage">
+<img id="logo" src="src/images/gk-logo-vertical.webp" alt="logoImage">
 <p class="footerTitle">© Grandpa's Kitchen</p>
 <p class="dateTime"></p>
 <p>Follow Us</p>
@@ -80,6 +80,9 @@
     .socialMedia {
         display: flex;
         justify-content: left;
+    }
+    #logo {
+        margin-left: 50px;
     }
     
 </style>
