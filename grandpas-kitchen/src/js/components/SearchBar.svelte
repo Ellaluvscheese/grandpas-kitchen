@@ -8,6 +8,7 @@
     //     $recipes = [];
     // });
     $recipes = [];
+    let showNoResults = false;
 
     async function searched() {
         $recipes = [];
@@ -16,6 +17,7 @@
         hi.innerHTML = 'Displaying results for: "' + text.toLowerCase() + '"';
         $recipes = await getRecipesByCategory($category, text);
         console.log($recipes);
+        showNoResults = $recipes.length === 0;
     }
 
 </script>
@@ -24,4 +26,7 @@
     <input bind:value={text} type="text" placeholder="Search for a recipe">
     <button on:click={searched}>Search</button>
     <p id="hi"></p>
+    {#if showNoResults}
+    <p>Sorry, no recipes match your search. Try something else!</p>
+    {/if}
 </div>
