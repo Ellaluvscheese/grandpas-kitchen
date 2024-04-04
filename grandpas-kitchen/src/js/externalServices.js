@@ -20,6 +20,45 @@ export const getRecipes = async () => {
   return data;
 }
 
+// recipe of the week
+// Function to fetch a random recipe from the API
+export async function getRandomRecipe() {
+  try {
+    const response = await fetch(`${baseURL}recipes/`);
+    const data = await convertToJson(response);
+    const randomIndex = Math.floor(Math.random() * data.length);
+    return data[randomIndex];
+  } catch (error) {
+    console.error("Error fetching random recipe:", error);
+    return null;
+  }
+}
+
+// Function to display the recipe on the website
+function displayRecipe(recipe) {
+  // Assuming you have an HTML element with the ID "recipeOfWeek"
+  const recipeNameElement = document.getElementById("recipeOfWeek");
+  
+  // Update the HTML elements with recipe details
+  recipeNameElement.textContent = recipe.name;
+}
+
+// Function to change the recipe once a week
+function changeRecipePeriodically() {
+  // Fetch a random recipe
+  getRandomRecipe().then(recipe => {
+    // Display the fetched recipe
+    displayRecipe(recipe);
+
+    // Schedule the function to run again after one week
+    setTimeout(changeRecipePeriodically, 7 * 24 * 60 * 60 * 1000); // 7 days * 24 hours * 60 minutes * 60 seconds * 1000 milliseconds
+  });
+}
+
+// Call the function to start changing the recipe periodically
+changeRecipePeriodically();
+
+
 // function to get a list of recipes with a specific category
 // (EG)
 export const getRecipesByCategory = async (category, text) => {

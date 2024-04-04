@@ -1,21 +1,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
-html {
-    margin: 0;
-    padding: 0;
-}
-#app {
-    margin: 0;
-}
-
+/* basic theme */
 h1 {
     font-family: "Caveat", cursive;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
-  }
-  h2, h3, h4, h5, h6, p, a {
+}
+  
+h2, h3, h4, h5, h6, p, a {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
-  }
+}
+
+body {
+  margin: 0;
+}
+
+/* image sizes */
+.recipeOfWeekImg {
+    max-width: 450px;
+    border-radius: 20px;
+    -webkit-filter: blur(2px); /* Safari 6.0 - 9.0 */
+    filter: blur(2px) grayscale(50%);
+    /* filter: grayscale(70%); */
+}
+.weekTitle {
+  position: absolute;
+  top: 40%;
+  right: 20%;
+  color: red;
+  z-index: 1;
+  
+}
+
+.image-summary-size {
+  max-width: 300px;
+  object-fit: cover;
+  border-radius: 20px;
+  
+}
+
+/* div that has the recipes and recipe of the week in it */
+.recipes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-betweens;
+}
+
+/* recipe name */
+.title {
+  color: #283D64;
+  text-decoration: none;
+  
+}
+.title:hover {
+  color: #ADC4F6;
+}
+
+.titleP {
+  margin: 0;
+}
+
+p.s-KbQL7_e1UIr4 { 
+  margin: 0;
+}
+
+/* .image-summary-size.s-KbQL7_e1UIr4 {
+  max-width: 230px;
+} */
+
+  
