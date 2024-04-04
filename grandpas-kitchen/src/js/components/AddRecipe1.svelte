@@ -15,7 +15,7 @@
       ingredients: event.target.ingredients.value,
       instructions: event.target.instructions.value,
       tags: event.target.tags.value,
-      image: event.target.filename.value // You might need to handle file upload separately
+      image: event.target.filename.value 
     };
     recipes.push(newRecipe);
     event.target.reset();
@@ -23,8 +23,7 @@
     // Convert form data to JSON
     const jsonData = JSON.stringify(newRecipe);
 
-    // Now you can do whatever you want with jsonData
-    console.log(jsonData); // For example, logging the JSON data to console
+    console.log(jsonData); 
   }
 </script>
 <form name="addRecipe" on:submit|preventDefault={handleSubmit}>
