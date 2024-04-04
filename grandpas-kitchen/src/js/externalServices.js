@@ -131,10 +131,3 @@ export const createUserProfile = async (userObj) => {
     const data = await convertToJson(response);
     return data;
    }
-  //exmaple of making a request to a public API route.
-  async function publicRoute(url) {
-    const res = await fetch(baseURL + url);
-    const data = await convertToJson(res);
-    console.log(data);
-    return data;
-  }
