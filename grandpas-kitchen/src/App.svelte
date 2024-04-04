@@ -13,9 +13,7 @@
   // import { get } from "svelte/store";
 
   let urlParams = {};
-  
   let profile;
-
   let results = {};
 
   onMount(async () => {
@@ -32,26 +30,31 @@
       console.log('userIdAuth',userIdAuth);
       //get the user
       try{
+        // console.log('profile',profile);
+        profile = await getUserProfile(userIdAuth);
+        $user._id = profile._id;
         console.log('profile',profile);
-      profile = await getUserProfile(userIdAuth);
-      console.log('profile',profile.json());
-      // if user not found, create user
-      // null or error, check later
-      if (profile.status == 'error' || profile == null){
+        if ($user.saved == undefined || $user.created == undefined){
+          console.log('if slay: ', $user.saved)
+          $user.saved = [];
+          $user.created = [];
+        } else {
+          console.log('else slay: ', $user.saved)
+        }
+      }catch(e){
+        if (profile == 'Invalid user id' || profile == undefined){
         let newUser = {
           "userFirstName": $user.given_name,
-          "userLastName": "any",
-          "email": "any",
+          "userLastName": $user.family_name,
+          "email": $user.email,
           "Auth0Id": userIdAuth
         }
         // create the user
         profile = await createUserProfile(newUser);
-        } else {
-          $user = profile._id;
+        $user._id = profile._id;
+        $user.saved = [];
+        $user.created = [];
         }
-      
-      }catch(e){
-        console.log('yuh',e);
       }
     }
   });
