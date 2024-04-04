@@ -14,8 +14,11 @@ h1 {
     font-weight: 400;
     font-style: normal;
   }
-  h2, h3, h4, h5, h6, p, a {
+  h2, h3, h4, h5, h6, p, a, li {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
   }
+
+
+ /* Recipe details Page styles */
