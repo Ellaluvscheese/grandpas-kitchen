@@ -41,7 +41,7 @@
 </script>
 
 <div>
-    <button on:click={liked} id="liked-button-{recipe._id}">Like</button>
+    <button on:click={liked} id="liked-button-{recipe._id}">Like ♥</button>
 </div>
 
 <style>
