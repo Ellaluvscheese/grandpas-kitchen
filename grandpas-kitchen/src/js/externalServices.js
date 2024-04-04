@@ -66,28 +66,56 @@ export const getIngredientsById = async (id) => {
   return ingredient;
 }
 
+// EG
+export const createLiked = async (recipe_id, user_name) => {
+  const body = {
+    "name": user_name,
+    "comment": "liked",
+    "recipe_id": recipe_id
+  }
+  const data = await privateRoute("comments/", "POST", body);
+  return data;
+}
+
+// EG
+export const removeLikedById = async (comment_id) => {
+  const data = await privateRoute(`comments/${comment_id}`, "DELETE");
+  return data;
+}
+
 // (EG)
 // get user profile
 export const getUserProfile = async (user_id) => {
-  const response = await privateRoute("profile");
+  const response = await privateRoute("users/");
+  const data = response.filter(user => user.Auth0Id === user_id);
   console.log("get user profile function log: " + response);
-  return response;
+  return data[0];
 }
 
-    //example of sending a request to the API using the token from Auth0
-    async function privateRoute(url, method = "GET") {
-      const token = await get(auth0Client).getTokenSilently();
-      const options = {
-        method: method,
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      };
-      const res = await fetch(baseURL + url, options);
-      const data = await convertToJson(res);
-      console.log(data);
-      return data;
+export const createUserProfile = async (userObj) => {
+  // call the api to post the new user and return the user_id
+  const data = await privateRoute("users/", "POST", userObj);
+  return data;
+}
+
+  //example of sending a request to the API using the token from Auth0
+  async function privateRoute(url, method = "GET", body = null) {
+    const token = await get(auth0Client).getTokenSilently();
+    const options = {
+      method: method,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
+      }
+    };
+    if (body !== null) {
+      options.body = JSON.stringify(body);
     }
+    const res = await fetch(baseURL + url, options);
+    const data = await convertToJson(res);
+    console.log(data);
+    return data;
+  }
   
     //exmaple of making a request to a public API route.
     async function publicRoute(url) {
@@ -103,3 +131,10 @@ export const getUserProfile = async (user_id) => {
     const data = await convertToJson(response);
     return data;
    }
+  //exmaple of making a request to a public API route.
+  async function publicRoute(url) {
+    const res = await fetch(baseURL + url);
+    const data = await convertToJson(res);
+    console.log(data);
+    return data;
+  }
