@@ -17,7 +17,9 @@ footer{
   position: fixed;
   left: 0;
   bottom: 0;
-  width: 100%;
+}
+.socialMedia{
+  text-align: center;
 }
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
