@@ -83,7 +83,7 @@
   }
 
   .recipe-catagories {
-    background: lightgray;
+    background: #F6E6D6;
     padding: 10px;
     border-radius: 10px;
   }
