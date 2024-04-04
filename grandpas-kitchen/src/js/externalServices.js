@@ -15,3 +15,14 @@ export const getRecipes = async () => {
   console.log(data);
   return data;
 }
+
+// export const randomRecipe = async () => {
+//   const recipes = await getRecipes()
+//   if (recipes.length > 0) {
+//     const randomIndex = Math.floor(Math.random() * recipes.length);
+//     return recipes[randomIndex];
+//   }
+//   else {
+//     console.log("No recipes available.");
+//   }
+// }

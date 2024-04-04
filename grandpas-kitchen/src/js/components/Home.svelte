@@ -7,7 +7,6 @@
 </script>
 
 <div>
-
     {#await promise}
         <p>Loading...</p>
     {:then recipes}
