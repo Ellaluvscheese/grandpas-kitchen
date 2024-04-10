@@ -38,14 +38,69 @@
         }
     }
 
+//-----------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------- Sergio -----------------------------------------------------------------------
+function toggleButtonClass(event) {
+    const button = event.target;
+    const buttonId = button.id;
+    const firstClass = 'buttonNotLiked';
+    const secondClass = 'buttonLiked';
+    const firstText = 'Like ♡';
+    const secondText = 'Liked ♥';
+
+    const buttonStates = JSON.parse(localStorage.getItem('buttonStates')) || {};
+
+    let newClass, newText;
+    if (buttonStates[buttonId] === firstClass) {
+        newClass = secondClass;
+        newText = secondText;
+    } else {
+        newClass = firstClass;
+        newText = firstText;
+    }
+
+    button.className = newClass;
+    button.textContent = newText;
+    buttonStates[buttonId] = newClass;
+    
+    localStorage.setItem('buttonStates', JSON.stringify(buttonStates));
+}
+
+function restoreButtonStates() {
+    const buttonStates = JSON.parse(localStorage.getItem('buttonStates')) || {};
+    for (const buttonId in buttonStates) {
+        const button = document.getElementById(buttonId);
+        if (button) {
+            const buttonClass = buttonStates[buttonId];
+            button.className = buttonClass;
+            button.textContent = buttonClass === 'buttonNotLiked' ? 'Like ♥' : 'Liked ♡';
+        }
+    }
+}
+
+function setup() {
+    console.log('Setting up buttons...');
+    document.querySelectorAll('button[id^="liked-button-"]').forEach(button => {
+        button.addEventListener('click', toggleButtonClass);
+    });
+    restoreButtonStates();
+}
+
+// Checks if the document is already loaded
+if (document.readyState === 'loading') {
+    // Wait for the load event if the document is not fully loaded
+    window.addEventListener('load', setup);
+} else {
+    // Call setup immediately if the document is already in a 'complete' state
+    setup();
+}
+
+
+
+//-----------------------------------------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------------------------------
 </script>
 
 <div>
-    <button on:click={liked} id="liked-button-{recipe._id}">Like</button>
+    <button id="liked-button-{recipe._id}" class="buttonNotLiked">Like ♡</button>
 </div>
-
-<style>
-    .liked {
-        color: red;
-    }
-</style>
